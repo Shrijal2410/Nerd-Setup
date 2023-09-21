@@ -6,7 +6,7 @@ In this tutorial, we'll guide you through creating a portable Ubuntu installatio
 
 Before we begin, make sure you have the following:
 
-- A bootable USB drive with Ubuntu 22.04.
+- A bootable USB drive with Ubuntu.
 - Rufus for Windows or mkusb for Linux.
 - An external drive (back up data first).
 - Some free time.
@@ -17,6 +17,8 @@ Before we begin, make sure you have the following:
 2. Plug in your external drive.
 3. Use GParted to unmount and delete all partitions on the external drive.
 
+   ![My unpartitioned external hard drive, showing up as /dev/sdb](https://www.58bits.com/sites/default/files/public/inline-images/gparted-01.png)
+
 ## 💼 Preparing the Portable Drive
 
 1. Create a 100MB FAT32 partition for the GRUB bootloader.
@@ -24,12 +26,19 @@ Before we begin, make sure you have the following:
 2. Create an 8GB Linux-swap partition.
 3. Create the main ext4 root partition of your desired size.
 
-## 🌟 Installing Ubuntu 22.04
+   ![My final partition arrangement on the external hard drive.](https://www.58bits.com/sites/default/files/public/inline-images/gparted-02.png)
+
+## 🌟 Installing Ubuntu
 
 1. Choose your language and optionally install drivers.
 2. Select 'Something else' for the installation type.
+
+   ![Be sure to select 'Something else' during Ubuntu installation.](https://www.58bits.com/sites/default/files/public/inline-images/ubuntu-installation-01.png)
+
 3. Assign partitions: EFI partition, swap, and root.
 4. Set the external drive as the bootloader installation location.
+
+   ![Final partition selections for installation of Ubuntu.](https://www.58bits.com/sites/default/files/public/inline-images/ubuntu-installation-02.png)
 
 ## 🧩 Installing GRUB onto the ESP Partition
 
@@ -94,6 +103,7 @@ To deal with potential permission challenges during installation, follow these s
 2. Copy 'boot' and 'EFI' folders from the Ubuntu ISO to the 'boot' (ESP) partition (sdx3).
 
 3. If permission problems arise, run Nautilus with elevated privileges:
+
    ```shell
    sudo -H nautilus
    ```
@@ -101,6 +111,7 @@ To deal with potential permission challenges during installation, follow these s
 4. Copy the folders to the correct locations.
 
 5. Use the 'Terminal':
+
    ```shell
    sudo mount /dev/sdx3 /mnt
    sudo -H nautilus
@@ -109,11 +120,13 @@ To deal with potential permission challenges during installation, follow these s
 6. This opens a window to place directories properly.
 
 7. Overwrite `grub.cfg` by copying it from sdx4 to sdx3:
+
    ```shell
    sudo cp /mnt/boot/grub/grub.cfg /boot/grub/
    ```
 
 8. Reinstall GRUB with:
+
    ```shell
    sudo grub-install --boot-directory=/mnt/boot /dev/sdx
    ```
