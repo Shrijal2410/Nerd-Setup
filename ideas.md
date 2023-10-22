@@ -1,7 +1,11 @@
 # NVClean Install
 
-# ROS
+# ROS Neotic & Humble
 
-# SITL
+# SITL, Mission Planner, QGC
 
 # mingw
+
+# curl open source download manager
+
+# Windows developer tools
