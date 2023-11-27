@@ -11,7 +11,7 @@ Download and install Miniconda (for the current user only)
 ```bash
 curl https://repo.anaconda.com/miniconda/Miniconda3-latest-Windows-x86_64.exe -o miniconda.exe
 start /wait "" miniconda.exe /InstallationType=JustMe /AddToPath=1 /RegisterPython=0 /S
-# add path: /D=%UserProfile%\Miniconda3
+# add path: /D=/path/Miniconda3
 del miniconda.exe
 ```
 
@@ -35,3 +35,8 @@ anaconda-clean --yes
 ```
 
 Your Python environment is set! Happy coding! 😊
+
+```bash
+conda create --name myenv python=3.9
+conda activate myenv
+```
